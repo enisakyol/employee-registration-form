@@ -3,9 +3,7 @@ package com.cydeo.model;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 @Getter
 @Setter
@@ -19,11 +17,15 @@ public class Employee {
 @Size(max = 12,min = 2)
     private String firstName;
     private String lastName;
-
+@NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-    private String email;
-    private String password;
+@NotNull
+@Email
+private String email;
+@NotBlank
+@Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z].{4,})")
+private String password;
     private String address;
     private String address2;
     private String city;
